@@ -6,9 +6,3 @@ apt update
 # Install Apache2
 apt install -y apache2
 
-# Start the Apache2 service
-service apache2 start
-
-# Enable Apache2 to start on boot
-systemctl enable apache2
-
