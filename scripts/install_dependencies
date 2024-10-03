@@ -1,20 +1,14 @@
 #!/bin/bash
-# /var/www/html/scripts/install_dependencies
 
-# Logging
-LOGFILE="/var/log/myapp/install_dependencies.log"
-echo "Starting installation of dependencies..." >> $LOGFILE
+# Update the package index
+apt update
 
-# Example: Install necessary packages (update according to your needs)
-apt-get update >> $LOGFILE 2>&1
-apt-get install -y package1 package2 >> $LOGFILE 2>&1
+# Install Apache2
+apt install -y apache2
 
-# Check if installation was successful
-if [ $? -ne 0 ]; then
-  echo "Failed to install dependencies." >> $LOGFILE
-  exit 1
-fi
+# Start the Apache2 service
+service apache2 start
 
-echo "Dependencies installed successfully." >> $LOGFILE
-exit 0
+# Enable Apache2 to start on boot
+systemctl enable apache2
 
