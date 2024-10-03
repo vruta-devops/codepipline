@@ -1,6 +1,19 @@
 #!/bin/bash
-isExistApp = `pgrep httpd`
-if [[ -n  $isExistApp ]]; then
-    service httpd stop        
+# /var/www/html/scripts/stop_server
+
+# Logging
+LOGFILE="/var/log/myapp/stop_server.log"
+echo "Stopping server..." >> $LOGFILE
+
+# Replace this command with the command to stop your server
+command_to_stop_server >> $LOGFILE 2>&1
+
+# Check if the server stopped successfully
+if [ $? -ne 0 ]; then
+  echo "Failed to stop server." >> $LOGFILE
+  exit 1
 fi
+
+echo "Server stopped successfully." >> $LOGFILE
+exit 0
 

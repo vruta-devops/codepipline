@@ -1,2 +1,19 @@
 #!/bin/bash
-service httpd start
+# /var/www/html/scripts/start_server
+
+# Logging
+LOGFILE="/var/log/myapp/start_server.log"
+echo "Starting server..." >> $LOGFILE
+
+# Replace this command with the command to start your server
+command_to_start_server >> $LOGFILE 2>&1
+
+# Check if the server started successfully
+if [ $? -ne 0 ]; then
+  echo "Failed to start server." >> $LOGFILE
+  exit 1
+fi
+
+echo "Server started successfully." >> $LOGFILE
+exit 0
+
